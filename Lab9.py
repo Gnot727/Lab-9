@@ -8,13 +8,30 @@ def menu():
 def encode(num):
     encoded = ""
     for i in num:
-        encoded_dig = (int(i) + 3) % 10
-        encoded += str(encoded_dig)
+        if int(i) >= 9:
+            encoded_dig = (int(i) + 3) - 10
+            encoded += str(encoded_dig)
+        else:
+            encoded_dig = (int(i) + 3)
+            encoded += str(encoded_dig)
 
     return encoded
 
 def decode(num):
-    pass
+    decoded = ""
+    print(num)
+    for i in num:
+        if int(i) <= 2:
+            decoded_dig = (int(i) + 7)
+            decoded += str(decoded_dig)
+            print(decoded_dig)
+        else:
+            decoded_dig = (int(i) - 3)
+            decoded += str(decoded_dig)
+            print(decoded_dig)
+
+    return decoded
+
 
 
 
@@ -27,7 +44,7 @@ def main():
             print("Your password has been encoded and stored!")
             encoded = encode(num)
         if choice == "2":
-            decoded = decode(encoded)
-            print(f"The encoded password is {encoded}, and the orginial password is {decoded}.")
+            decoded = decode(num)
+            print(f"The encoded password is {encoded}, and the original password is {decoded}.")
 if __name__ == "__main__":
     main()
